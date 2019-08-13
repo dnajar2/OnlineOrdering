@@ -1,6 +1,6 @@
 <template>
-    <div class="row justify-center">
-      <div class="col-4 q-mt-lg" v-if="!loggedIn">
+    <div class="row justify-center q-col-gutter-md">
+      <div class="col-md-4 col-xs-11 q-mt-lg" v-if="!loggedIn">
         <q-input filled
                  v-model="userName"
                  label="User name"
@@ -14,13 +14,14 @@
         />
         <q-btn primary color="primary" label="Login" class="q-mt-lg" @click="login"/>
       </div>
-      <div class="col-8" v-else>
-       <h4> Welcome {{ userName }}</h4>
+      <div class="col-md-8 col-xs-12" v-else>
+       <p class="text-h6"> Welcome {{ userName }}</p>
         <q-table
           title="Past Orders"
           :data="data"
           :columns="columns"
           row-key="name"
+          card-class="q-ma-sm"
         />
       </div>
 
@@ -36,8 +37,8 @@
                 password:'',
                 loggedIn:false,
                 columns:[
-                    {name:'name', label:'Item Order', field: row => row.name},
-                    {name:'date', label:'Date Order', field: 'date'},
+                    {name:'name', label:'Item Order', field: row => row.name, align:'left'},
+                    {name:'date', label:'Date Order', field: 'date', align:'center'},
                     {name:'paid', label:'Amount Paid', field: 'paid', format: val => `$${(val / 100).toFixed(2)}`},
 
                 ],

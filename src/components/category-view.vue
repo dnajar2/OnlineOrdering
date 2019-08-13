@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 class="no-margin q-pb-md">Sandwiches</h3>
+      <h3 class="no-margin q-pb-md category-name">{{ $route.params.id }}</h3>
 
       <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
         <food-grid-item  class="col-md-4 col-sm-6 col-xs-12 q-pa-sm"
@@ -12,7 +12,11 @@
       </div>
       <q-slide-transition>
       <div class="cart" v-if="cartItems.length > 0">
-        <div>Your Cart Items</div>
+        <div>
+          <span class="float-left">Your Cart Items</span>
+          <span class="float-right btn" @click="checkOut">Check Out</span>
+          <div style="clear: both"></div>
+        </div>
         <hr>
         <div>
           <div v-for="(cart, key) in cartItems" class="row" :class="[cartItems.length > 2 ? 'border-bottom':'']">
@@ -30,12 +34,13 @@
 </template>
 
 <script>
-    import FoodGridItem from "../../../layouts/FoodGridItem";
+    import FoodGridItem from "../layouts/food-grid-item";
     export default {
-        name: "Sandwiches",
+        name: "category-view",
         components: {FoodGridItem},
         data(){
             return{
+                category:'',
                 foodData:[
                     {
                         id: '1',
@@ -52,7 +57,7 @@
                         id: '2',
                         name: 'Pull Pork',
                         category:'Sandwiches',
-                        price: '925',
+                        price: '1125',
                         image:'https://www.foodiesfeed.com/wp-content/uploads/2015/05/argentinian-beef-steak-sandwich-463x309.jpg',
                         options: [
                             {label: 'Whole', value: 1125},
@@ -120,19 +125,22 @@
             total(){
                 let grandTotal = 0
                 for(let i = 0; i < this.cartItems.length; i++){
-                    console.log(this.cartItems[i].price)
                     grandTotal += parseInt(this.cartItems[i].price)
                 }
                 return `$${(grandTotal / 100).toFixed(2) }`
             }
         },
+
         methods:{
             addToCart(cartData){
                 this.cartItems.push(cartData)
             },
             removeItem(key){
                 this.cartItems.splice(key, 1)
-            }
+            },
+            checkOut(){
+                this.$router.push('/checkout')
+            },
         },
         filters:{
             price(val){
@@ -149,8 +157,14 @@
     background-color: whitesmoke;
     z-index: 99999999;
     right: 10px;
-    width: 400px;
+    max-width: 400px;
+    min-width: 300px;
     padding: 15px;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    -webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.5);
+
   }
   .border-bottom{
     border-bottom: 1px dashed #999;
@@ -158,5 +172,14 @@
   .delete-item{
     padding: 5px;
     cursor: pointer;
+  }
+  .btn {
+    padding: 2px 4px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+  }
+  .category-name{
+    text-transform: capitalize;
   }
 </style>

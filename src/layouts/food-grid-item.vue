@@ -18,7 +18,16 @@
             flat
             md
             @click="modifiersModal = true"
-            class="col-6"/>
+            class="col-6"
+          v-if="food.modifiers"/>
+          <q-btn
+            color="primary"
+            label="Add To Cart"
+            flat
+            md
+            class="col-6"
+            @click="addToCart"
+            v-else/>
         </q-card-section>
       </q-card>
       <!--      modal-->
@@ -35,7 +44,7 @@
 <script>
     import ModifiersModal from "../components/modifiers-modal";
     export default {
-        name: "FoodGridItem",
+        name: "food-grid-item",
         components: {ModifiersModal},
         props:{
             food:{
@@ -49,6 +58,9 @@
               order:'',
               modifiersModal: false
           }
+        },
+        created(){
+            this.options = this.food.options[0].label
         },
         computed:{
             itemPrice(){
@@ -69,10 +81,14 @@
                     name: this.food.name,
                     category: this.food.category,
                     price: this.food.price,
+                    size: this.options,
                     modifiers:[]
                 }
-                Object.assign(newItem.modifiers, modifiers)
-                this.modifiersModal = false
+                if(modifiers) {
+                    Object.assign(newItem.modifiers, modifiers)
+                    this.modifiersModal = false
+                }
+                console.log('addToCart', newItem)
                 this.$emit('addToCart', newItem)
             }
         }

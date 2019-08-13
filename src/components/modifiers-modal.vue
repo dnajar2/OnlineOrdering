@@ -14,7 +14,7 @@
       </q-card-section>
 
       <q-card-section class="row q-col-gutter-md" style="min-height: 410px">
-        <div class="col-sm-4">
+        <div class="col-xs-4">
           Customize
           <ul class="list">
             <li v-for="(modifier, key) in modifiers" :key="key" @click="displayModifiers(key)" :class="[{active: conditionClass == key}]">
@@ -22,7 +22,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-8">
+        <div class="col-xs-8">
           <q-item tag="label" v-ripple v-for="(modifiers, key) in activeModifiers" :key="key">
             <q-item-section avatar>
               <q-checkbox v-model="chosenModifiers" :val="modifiers.name" color="teal" />
@@ -104,5 +104,10 @@ ul.list li{
   }
   ul.list li:hover{
     background-color: #b0b0b0;
+  }
+  @media (max-width: 767px) {
+    .q-dialog__inner--minimized{
+      padding: 0 !important;
+    }
   }
 </style>
