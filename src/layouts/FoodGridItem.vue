@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import ModifiersModal from "../components/modifiersModal";
+    import ModifiersModal from "../components/modifiers-modal";
     export default {
         name: "FoodGridItem",
         components: {ModifiersModal},

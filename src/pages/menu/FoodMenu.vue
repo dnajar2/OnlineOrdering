@@ -1,8 +1,8 @@
 <template>
     <div class="page">
-      <h2 style="margin: 5px">Menu</h2>
+      <h4 style="margin: 15px 5px">Online Menu</h4>
       <hr>
-      <div class="row">
+      <div class="row q-col-gutter-lg">
         <div class="tree col-sm-2" >
           <q-list>
             <q-item clickable v-for="(menu, idx) in menus" :key="idx" tag="a" :to="menu.path">
@@ -14,8 +14,6 @@
           <router-view></router-view>
         </div>
       </div>
-
-
     </div>
 </template>
 

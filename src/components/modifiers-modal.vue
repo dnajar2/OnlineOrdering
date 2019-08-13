@@ -13,7 +13,7 @@
         </div>
       </q-card-section>
 
-      <q-card-section class="row" style="min-height: 410px">
+      <q-card-section class="row q-col-gutter-md" style="min-height: 410px">
         <div class="col-sm-4">
           Customize
           <ul class="list">
