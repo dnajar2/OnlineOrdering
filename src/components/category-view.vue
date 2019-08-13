@@ -1,12 +1,18 @@
 <template>
     <div>
-      <h3 class="no-margin q-pb-md category-name">{{ $route.params.id }}</h3>
+      <h3 class="no-margin q-pb-lg category-name">{{ $route.params.id }}
+        <span class="float-right">
+          <i class="fas fa-th" @click="isList = false"></i>&nbsp;<i class="fas fa-list" @click="isList = true"></i>
+        </span>
+      </h3>
 
       <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
+
         <food-grid-item  class="col-md-4 col-sm-6 col-xs-12 q-pa-sm"
                          v-for="(item, key) in foodData"
                          :key="key"
                          :food="item"
+                         :is-list="isList"
                          @addToCart="addToCart"
                          />
       </div>
@@ -27,7 +33,7 @@
         </div>
         <hr>
         <div class="total text-right">
-          Grand Total: {{total}}</div>
+          Total: {{total}}</div>
       </div>
       </q-slide-transition>
     </div>
@@ -41,6 +47,7 @@
         data(){
             return{
                 category:'',
+                isList: false,
                 foodData:[
                     {
                         id: '1',
@@ -151,6 +158,10 @@
 </script>
 
 <style scoped>
+  h3 span{
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
   .cart{
     position: fixed;
     bottom: 0;
@@ -168,6 +179,7 @@
   }
   .border-bottom{
     border-bottom: 1px dashed #999;
+    margin-bottom: 5px;
   }
   .delete-item{
     padding: 5px;

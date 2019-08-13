@@ -33,8 +33,8 @@
         name: "user",
         data(){
             return{
-                userName:'',
-                password:'',
+                userName:'Some User',
+                password:'somepassword',
                 loggedIn:false,
                 columns:[
                     {name:'name', label:'Item Order', field: row => row.name, align:'left'},
@@ -47,6 +47,9 @@
                     {name: 'Chicken Salad', date:'8/05/2019', paid:1800}
                 ]
             }
+        },
+        created(){
+            this.login()
         },
         methods:{
             login(){

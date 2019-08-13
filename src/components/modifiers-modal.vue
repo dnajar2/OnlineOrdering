@@ -57,7 +57,7 @@
             return {
                 activeModifiers: '',
                 chosenModifiers:[],
-                conditionClass:''
+                conditionClass:'',
             }
         },
         created(){
