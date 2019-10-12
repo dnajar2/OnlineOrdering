@@ -35,6 +35,13 @@
 </script>
 
 <style>
+  h3{
+    font-size: 2rem;
+  }
+  h3 span{
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 .page{
   padding: 0 15px;
   margin-bottom: 25px;

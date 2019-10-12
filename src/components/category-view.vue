@@ -158,10 +158,7 @@
 </script>
 
 <style scoped>
-  h3 span{
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+
   .cart{
     position: fixed;
     bottom: 0;

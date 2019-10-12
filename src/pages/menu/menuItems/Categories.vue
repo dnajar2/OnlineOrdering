@@ -1,17 +1,24 @@
 <template>
-  <div class="row q-col-gutter-sm">
-    <div v-for="(category, key) in categories" :key="key" class="col-md-4 col-xs-6" >
-      <q-card tag="a" :to="category.path">
-        <q-card-section class="text-center">{{category.name}}</q-card-section>
-        <router-link tag="a" :to="category.path">
-        <q-img
-          :src="category.img"
-          :ratio="16/9"
-        />
-        </router-link>
-      </q-card>
+  <div>
+    <h3>Menu Categories
+      <span class="float-right">
+          <i class="fas fa-th" @click="isList = false"></i>&nbsp;<i class="fas fa-list" @click="isList = true"></i>
+        </span></h3>
+    <div class="row q-col-gutter-sm">
+      <div v-for="(category, key) in categories" :key="key" class="col-md-4 col-xs-6" >
+        <q-card tag="a" :to="category.path">
+          <q-card-section class="text-center">{{category.name}}</q-card-section>
+          <router-link tag="a" :to="category.path">
+            <q-img
+              :src="category.img"
+              :ratio="16/9"
+            />
+          </router-link>
+        </q-card>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
