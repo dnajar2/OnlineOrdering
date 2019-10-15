@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import store from '../store';
 import routes from './routes'
 
 Vue.use(VueRouter)
@@ -20,6 +20,19 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
+  })
+
+  Router.beforeEach((to, from, next) =>{
+    console.log(to)
+    let auth = store.getters['auth/authenticated']
+    if(to.meta.requiresAuth) {
+      if(auth){
+        next()
+      }else{
+        next({name: 'login'})
+      }
+    }
+    else next()
   })
 
   return Router

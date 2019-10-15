@@ -7,9 +7,10 @@ export function ApiRequest (endpoint, method, data) {
       method = !method ? 'get' : method
       const url = baseUrl + endpoint
       const response = await axios({ method, url, data })
-      resolve(response.data.data)
+      resolve(response.data)
     } catch (err) {
       console.log(err)
+      reject(err)
     }
   })
 }

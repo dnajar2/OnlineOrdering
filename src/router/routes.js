@@ -1,27 +1,10 @@
 
-const routes = [
-  {
-    path: '/',
-    component: () => import('layouts/pageLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: '/menu',
-        component: () => import('pages/menu/food-menu.vue'),
-        redirect:'menu/categories',
-        children: [
-          {
-            path:'/menu/categories', name:'menu.categories', component: () => import('pages/menu/menuItems/Categories.vue')
-          },
-          {
-            path:'/menu/categories/:id', name:'menu.categories.id', component: () => import('components/category-view.vue')
-          },
-        ]
-      },
-      { path: '/user', component: () => import('pages/user.vue') },
-      { path: '/checkout', component: () => import('pages/check-out.vue') },
 
-    ]
-  }
+const routes = [
+  { path: '/', redirect: 'profile'},
+  { path: '/profile', name: 'profile', component: require('pages/auth/profile.vue').default, meta: { requiresAuth: true} },
+  { path: '/login', name: 'login', component: require('pages/auth/login.vue').default, },
+  { path: '/register', name: 'register', component: require('pages/auth/register.vue').default, },
 ]
 
 // Always leave this as last one

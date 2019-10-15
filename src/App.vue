@@ -1,12 +1,14 @@
 <template>
   <div id="q-app">
-    <router-view />
+    <page-layout/>
   </div>
 </template>
 
 <script>
+import PageLayout from "./layouts/pageLayout";
 export default {
-  name: 'App'
+  name: 'App',
+  components: {PageLayout}
 }
 </script>
 

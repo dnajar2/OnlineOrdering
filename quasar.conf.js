@@ -1,5 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+const path = require('path')
 
 module.exports = function (ctx) {
   return {
@@ -62,12 +63,18 @@ module.exports = function (ctx) {
 
     build: {
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
       extendWebpack (cfg) {
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias, // This adds the existing alias
+          // Add your own alias like this
+          store: path.resolve(__dirname, './src/store'),
+          components: path.resolve(__dirname, './src/components')
+        }
       }
     },
 
