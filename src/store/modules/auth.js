@@ -26,6 +26,7 @@ const mutations = {
   },
 
   logout (state) {
+    state.user = null
     state.authenticated = false
     state.token = null
     SessionStorage.remove('token')

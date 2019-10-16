@@ -11,7 +11,7 @@
           </q-avatar>
           App
         </q-toolbar-title>
-        <q-btn-dropdown color="primary" label="Profile">
+        <q-btn-dropdown color="primary" label="Profile" v-if="authenticated">
           <q-list>
             <q-item clickable v-close-popup @click="onItemClick">
               <q-item-section>
@@ -25,9 +25,9 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup @click="logout">
               <q-item-section>
-                <q-item-label>Articles</q-item-label>
+                <q-item-label>Logout</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -65,9 +65,18 @@
         left: false
       }
     },
+    computed:{
+      authenticated(){
+        return this.$store.getters['auth/authenticated']
+      }
+    },
     methods:{
       onItemClick(){
 
+      },
+      async logout(){
+        await this.$store.dispatch('auth/logout')
+        this.$router.push({name: 'login'})
       }
     }
   }

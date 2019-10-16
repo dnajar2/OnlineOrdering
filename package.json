@@ -18,7 +18,8 @@
     "moment": "^2.24.0",
     "quasar": "^1.1.7",
     "vue-chartjs": "^3.4.2",
-    "vue-country-region-select": "^2.0.11"
+    "vue-country-region-select": "^2.0.11",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "@quasar/app": "^1.1.4",
