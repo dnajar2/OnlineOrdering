@@ -1,5 +1,5 @@
 import axios from 'axios'
-let baseUrl = 'http://127.0.0.1:8000/api/v1/'
+let baseUrl = 'http://127.0.0.1/api/v1/'
 
 export function ApiRequest (endpoint, method, data) {
   return new Promise(async (resolve, reject) => {

@@ -23,7 +23,7 @@
   import PercentInput from "../components/percent-input";
 
   export default {
-    name: "home-index",
+    name: "upload",
     components: {PercentInput},
     data() {
       return {

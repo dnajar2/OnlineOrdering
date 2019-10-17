@@ -37,6 +37,25 @@
 
     <q-drawer v-model="left" side="left" overlay bordered>
       <!-- drawer content -->
+      <q-list bordered separator>
+        <q-item clickable v-ripple @click="routeTo('upload')">
+          <q-item-section>Upload File</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple>
+          <q-item-section>
+            <q-item-label>Item with caption</q-item-label>
+            <q-item-label caption>Caption</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple>
+          <q-item-section>
+            <q-item-label overline>OVERLINE</q-item-label>
+            <q-item-label>Item with caption</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
 
     <q-page-container>
@@ -62,7 +81,7 @@
     name: 'page-layout',
     data () {
       return {
-        left: false
+        left: true
       }
     },
     computed:{
@@ -71,8 +90,8 @@
       }
     },
     methods:{
-      onItemClick(){
-
+      routeTo(val){
+        console.log('val', val)
       },
       async logout(){
         await this.$store.dispatch('auth/logout')
