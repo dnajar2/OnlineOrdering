@@ -13,13 +13,13 @@
         </q-toolbar-title>
         <q-btn-dropdown color="primary" label="Profile" v-if="authenticated">
           <q-list>
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup>
               <q-item-section>
                 <q-item-label>Photos</q-item-label>
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup>
               <q-item-section>
                 <q-item-label>Videos</q-item-label>
               </q-item-section>
@@ -91,7 +91,7 @@
     },
     methods:{
       routeTo(val){
-        console.log('val', val)
+        this.$router.push({name: val})
       },
       async logout(){
         await this.$store.dispatch('auth/logout')

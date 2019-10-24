@@ -2,7 +2,7 @@
   <q-page class="q-pa-lg">
     <div class="row">
       <div class="col-sm-3 q-mb-lg">
-        <q-input filled type="file" @change="loadCSV($event)"/>
+        <q-input filled type="file" name="file" @change="loadCSV($event)"/>
       </div>
     </div>
     <q-table
@@ -19,7 +19,6 @@
 
 <script>
 
-  import csv from 'csvtojson'
   import PercentInput from "../components/percent-input";
 
   export default {
@@ -27,6 +26,7 @@
     components: {PercentInput},
     data() {
       return {
+        file:'',
         channel_name: '',
         channel_fields: [],
         channel_entries: [],
@@ -83,7 +83,8 @@
         return result // JavaScript object
       },
       loadCSV(e) {
-        console.log(e)
+        this.file = e.target.files[0]
+        console.log('refs', this.file)
         let self = this
         if (window.FileReader) {
           let reader = new FileReader();
@@ -104,10 +105,12 @@
         }
       },
       uploadData(){
-        console.log(this.parse_csv);
+
+        let formData = new FormData()
+        formData.append('file', this.file)
         return new Promise(async (resolve, reject) =>{
           try {
-            this.category = await this.$ApiRequest(`upload`, 'post', this.category)
+            this.category = await this.$ApiRequest(`upload`, 'post', formData)
             resolve()
           } catch (e){
             console.log(e)

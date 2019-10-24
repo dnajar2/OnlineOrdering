@@ -5,6 +5,7 @@ export default async ({ Vue }) => {
   axios.interceptors.request.use(async (request) => {
     let token = SessionStorage.getItem('token')
     if (token) {
+
       request.headers.common['Authorization'] = 'Bearer ' + token
     }
 
